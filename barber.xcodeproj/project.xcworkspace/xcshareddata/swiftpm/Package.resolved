@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AppStoreConnect-Swift-SDK",
+        "repositoryURL": "https://github.com/AvdLee/appstoreconnect-swift-sdk",
+        "state": {
+          "branch": null,
+          "revision": "2abaffe784a6e2c69ae337ebad86f131294689ad",
+          "version": "1.1.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
