@@ -9,9 +9,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    var outdated = Homebrew.shared.outdated()
+        
     var body: some View {
-        Text("Hello, World!")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        VStack {
+            List(self.outdated.formulae) { entry in
+                OutdatedView(entry: entry)
+            }
+            Button("Quit") {
+                exit(0)
+            }.padding(.bottom, 10)
+        }
     }
 }
 
