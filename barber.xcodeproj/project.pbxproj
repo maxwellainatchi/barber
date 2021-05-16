@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		504CD47424C3EB5900A4483C /* AppStoreConnect-Swift-SDK in Frameworks */ = {isa = PBXBuildFile; productRef = 504CD47324C3EB5900A4483C /* AppStoreConnect-Swift-SDK */; };
 		5095B4DB24C392E700A4483C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B4DA24C392E700A4483C /* AppDelegate.swift */; };
 		5095B4DD24C392E700A4483C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5095B4DC24C392E700A4483C /* ContentView.swift */; };
 		5095B4E024C392E700A4483C /* barber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5095B4DE24C392E700A4483C /* barber.xcdatamodeld */; };
@@ -33,7 +32,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				504CD47424C3EB5900A4483C /* AppStoreConnect-Swift-SDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +94,6 @@
 			);
 			name = barber;
 			packageProductDependencies = (
-				504CD47324C3EB5900A4483C /* AppStoreConnect-Swift-SDK */,
 			);
 			productName = barber;
 			productReference = 5095B4D724C392E700A4483C /* barber.app */;
@@ -127,7 +124,6 @@
 			);
 			mainGroup = 5095B4CE24C392E700A4483C;
 			packageReferences = (
-				504CD47224C3EB5900A4483C /* XCRemoteSwiftPackageReference "appstoreconnect-swift-sdk" */,
 			);
 			productRefGroup = 5095B4D824C392E700A4483C /* Products */;
 			projectDirPath = "";
@@ -357,25 +353,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		504CD47224C3EB5900A4483C /* XCRemoteSwiftPackageReference "appstoreconnect-swift-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AvdLee/appstoreconnect-swift-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		504CD47324C3EB5900A4483C /* AppStoreConnect-Swift-SDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 504CD47224C3EB5900A4483C /* XCRemoteSwiftPackageReference "appstoreconnect-swift-sdk" */;
-			productName = "AppStoreConnect-Swift-SDK";
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		5095B4DE24C392E700A4483C /* barber.xcdatamodeld */ = {
