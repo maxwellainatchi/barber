@@ -25,13 +25,13 @@ class LoadState<T, E: Error>: ObservableObject {
     }
 
     @Published var status: Status = .unloaded
-    let load: (_ callback: (Result<T, E>) -> Void) -> Void
+    let load: (@escaping (Result<T, E>) -> Void) -> Void
 
-    init(load: @escaping (_ callback: (Result<T, E>) -> Void) -> Void) {
+    init(load: @escaping (@escaping (Result<T, E>) -> Void) -> Void) {
         self.load = load
     }
     
-    convenience init(load: @autoclosure @escaping () -> Result<T, E>) {
+    convenience init(result load: @autoclosure @escaping () -> Result<T, E>) {
         self.init {
             $0(load())
         }
@@ -57,7 +57,7 @@ class LoadState<T, E: Error>: ObservableObject {
 }
 
 extension LoadState where E == Error {
-    convenience init(load: @autoclosure @escaping () throws -> T) {
+    convenience init(value load: @autoclosure @escaping () throws -> T) {
         self.init {
             $0(Result { try load() })
         }

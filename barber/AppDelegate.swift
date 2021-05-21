@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var popover: NSPopover!
     var statusBarItem: NSStatusItem!
 
-    var state = LoadState(load: try Homebrew.shared.outdated())
+    var state = LoadState(load: Homebrew.shared.outdated)
 
     func applicationDidFinishLaunching(_: Notification) {
         let size = NSSize(width: 400, height: 400)

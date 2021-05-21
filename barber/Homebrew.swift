@@ -43,6 +43,7 @@ private class HomebrewCLIExecutor: HomebrewExecutor {
 }
 
 class Homebrew {
+    private static let queue = DispatchQueue(label: "Homebrew", attributes: .concurrent)
     public static var shared = Homebrew(executor: HomebrewCLIExecutor())
 
     private static let decoder: JSONDecoder = {
@@ -57,21 +58,26 @@ class Homebrew {
         self.executor = executor
     }
 
-    func outdated() throws -> OutdatedResponse {
-        try self.execute(command: "outdated", "--json=v2", andLoadInto: OutdatedResponse.self)
+    func outdated(callback: @escaping (Result<OutdatedResponse, Error>) -> Void) {
+        self.execute(command: "outdated", "--json=v2", andLoadInto: OutdatedResponse.self, callback: callback)
     }
 
-    func info(name: String) throws -> InfoResponse {
-        try self.execute(command: "info", name, "--json=v2", andLoadInto: InfoResponse.self)
+    func info(name: String, callback: @escaping (Result<InfoResponse, Error>) -> Void) {
+        self.execute(command: "info", name, "--json=v2", andLoadInto: InfoResponse.self, callback: callback)
     }
 
-    private func execute<C: Decodable>(command: String, _ arguments: String..., andLoadInto decodable: C.Type) throws -> C {
-        do {
-            let data = try self.executor.execute(command: command, arguments: arguments)
-            return try Self.decoder.decode(decodable, from: data)
-        } catch {
-            print("Error executing:", error)
-            throw error
+    private func execute<C: Decodable>(command: String, _ arguments: String..., andLoadInto decodable: C.Type, callback: @escaping (Result<C, Error>) -> Void) {
+        Self.queue.async {
+            let result = Result { () -> C in
+                let data = try self.executor.execute(command: command, arguments: arguments)
+                return try Self.decoder.decode(decodable, from: data)
+            }
+            if case .failure(let error) = result {
+                print("Error executing:", error)
+            }
+            DispatchQueue.main.async {
+                callback(result)
+            }
         }
     }
 }
