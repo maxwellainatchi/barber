@@ -33,7 +33,7 @@ extension Homebrew {
     struct InfoEntry: Codable {
         struct Versions: Codable {
             let stable: String
-            let head: String
+            let head: String?
             let bottle: Bool
         }
 
@@ -54,7 +54,7 @@ extension Homebrew {
         let aliases: [String]
         let versionedFormulae: [String]
         let desc: String
-        let license: String
+        let license: String?
         let homepage: URL
         let versions: Versions
         let urls: URLs
