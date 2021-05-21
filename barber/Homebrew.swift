@@ -9,16 +9,16 @@
 import Foundation
 import ShellOut
 
-fileprivate protocol HomebrewExecutor {
+private protocol HomebrewExecutor {
     func execute(command: String, arguments: [String]) throws -> Data
 }
 
-fileprivate class HomebrewJSONLoader: HomebrewExecutor {
+private class HomebrewJSONLoader: HomebrewExecutor {
     private let registeredFileNames: [String: String] = [
-        "outdated": "brew-outdated.json"
+        "outdated": "brew-outdated.json",
     ]
-    
-    func execute(command: String, arguments: [String]) -> Data {
+
+    func execute(command: String, arguments _: [String]) -> Data {
         guard let name = self.registeredFileNames[command] else {
             fatalError("No registered file name for command \(command)")
         }
@@ -36,7 +36,7 @@ fileprivate class HomebrewJSONLoader: HomebrewExecutor {
     }
 }
 
-fileprivate class HomebrewCLIExecutor: HomebrewExecutor {
+private class HomebrewCLIExecutor: HomebrewExecutor {
     func execute(command: String, arguments: [String]) throws -> Data {
         try shellOut(to: "/usr/local/bin/brew", arguments: [command] + arguments).data(using: .utf8)!
     }
