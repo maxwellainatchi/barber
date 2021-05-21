@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import ShellOut
 
 fileprivate protocol HomebrewExecutor {
-    func execute(command: String, arguments: [String]) -> Data
+    func execute(command: String, arguments: [String]) throws -> Data
 }
 
 fileprivate class HomebrewJSONLoader: HomebrewExecutor {
@@ -35,8 +36,14 @@ fileprivate class HomebrewJSONLoader: HomebrewExecutor {
     }
 }
 
+fileprivate class HomebrewCLIExecutor: HomebrewExecutor {
+    func execute(command: String, arguments: [String]) throws -> Data {
+        try shellOut(to: "/usr/local/bin/brew", arguments: [command] + arguments).data(using: .utf8)!
+    }
+}
+
 class Homebrew {
-    public static var shared = Homebrew(executor: HomebrewJSONLoader())
+    public static var shared = Homebrew(executor: HomebrewCLIExecutor())
     
     private static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -63,13 +70,12 @@ class Homebrew {
         self.executor = executor
     }
     
-    func outdated() -> OutdatedResponse {
-        // TODO: error handling
-        try! self.execute(command: "outdated", "--json=v2", andLoadInto: OutdatedResponse.self)
+    func outdated() throws -> OutdatedResponse {
+        try self.execute(command: "outdated", "--json=v2", andLoadInto: OutdatedResponse.self)
     }
     
     private func execute<C: Decodable>(command: String, _ arguments: String..., andLoadInto decodable: C.Type) throws -> C {
-        let data = self.executor.execute(command: command, arguments: arguments)
+        let data = try self.executor.execute(command: command, arguments: arguments)
         return try Self.decoder.decode(decodable, from: data)
     }
 }
