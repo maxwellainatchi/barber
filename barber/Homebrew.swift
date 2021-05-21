@@ -59,11 +59,17 @@ class Homebrew {
         let pinnedVersion: String?
     }
     
+    struct OutdatedCaskEntry: Codable {
+        let name: String
+        let installedVersions: String
+        let currentVersion: String
+    }
+
     struct OutdatedResponse: Codable {
         let formulae: [OutdatedEntry]
-        let casks: [OutdatedEntry]
+        let casks: [OutdatedCaskEntry]
     }
-    
+
     private let executor: HomebrewExecutor
     
     private init(executor: HomebrewExecutor) {
