@@ -13,10 +13,15 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate {
     var popover: NSPopover!
     var statusBarItem: NSStatusItem!
+    
+    var state: LoadState<Homebrew.OutdatedResponse, Error> = .init {
+        $0(Result { try Homebrew.shared.outdated() })
+    }
 
     func applicationDidFinishLaunching(_: Notification) {
         let size = NSSize(width: 400, height: 400)
-        let contentView = ContentView(size: size)
+        let contentView = ContentView(state: self.state, size: size)
+        self.state.reload()
 
         let popover = NSPopover()
         popover.contentSize = size
