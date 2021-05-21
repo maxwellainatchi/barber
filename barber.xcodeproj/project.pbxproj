@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		5095B4E224C392ED00A4483C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5095B4E124C392ED00A4483C /* Assets.xcassets */; };
 		5095B4E524C392ED00A4483C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5095B4E424C392ED00A4483C /* Preview Assets.xcassets */; };
 		5095B4E824C392ED00A4483C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5095B4E624C392ED00A4483C /* Main.storyboard */; };
+		50DB8A42265470B7007456FD /* ShellOut in Frameworks */ = {isa = PBXBuildFile; productRef = 50DB8A41265470B7007456FD /* ShellOut */; };
 		50FE66D726517FA4003B0B90 /* mock-data in Resources */ = {isa = PBXBuildFile; fileRef = 50FE66D626517FA4003B0B90 /* mock-data */; };
 		50FE66DA26517FD4003B0B90 /* Homebrew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE66D926517FD4003B0B90 /* Homebrew.swift */; };
 		50FE66DD2651863A003B0B90 /* OutdatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE66DC2651863A003B0B90 /* OutdatedView.swift */; };
@@ -38,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50DB8A42265470B7007456FD /* ShellOut in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +113,7 @@
 			);
 			name = barber;
 			packageProductDependencies = (
+				50DB8A41265470B7007456FD /* ShellOut */,
 			);
 			productName = barber;
 			productReference = 5095B4D724C392E700A4483C /* barber.app */;
@@ -141,6 +144,7 @@
 			);
 			mainGroup = 5095B4CE24C392E700A4483C;
 			packageReferences = (
+				50DB8A40265470B7007456FD /* XCRemoteSwiftPackageReference "ShellOut" */,
 			);
 			productRefGroup = 5095B4D824C392E700A4483C /* Products */;
 			projectDirPath = "";
@@ -377,6 +381,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		50DB8A40265470B7007456FD /* XCRemoteSwiftPackageReference "ShellOut" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JohnSundell/ShellOut";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		50DB8A41265470B7007456FD /* ShellOut */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50DB8A40265470B7007456FD /* XCRemoteSwiftPackageReference "ShellOut" */;
+			productName = ShellOut;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		5095B4DE24C392E700A4483C /* barber.xcdatamodeld */ = {
