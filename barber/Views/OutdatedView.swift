@@ -9,7 +9,8 @@
 import SwiftUI
 
 extension Color {
-    static let deemphasizedBackground = Color(.sRGB, white: 1, opacity: 0.1)
+    static let background = Color.white.opacity(0.2)
+    static let deemphasizedBackground = Color.background.opacity(0.1)
 }
 
 extension CGFloat {
@@ -18,19 +19,18 @@ extension CGFloat {
 
 struct Code: View {
     let text: String
-    
+
     var body: some View {
         Text(text).font(.system(.body, design: .monospaced))
-            .background(Color.deemphasizedBackground)
             .cornerRadius(.defaultCornerRadius)
     }
 }
 
 struct OutdatedView: View {
     var entry: Homebrew.OutdatedEntry
-    
+
     @State var collapsed = true
-    
+
     var body: some View {
         HStack {
             Text(collapsed ? "▶︎" : "▼")
@@ -39,7 +39,9 @@ struct OutdatedView: View {
             Spacer()
         }.onTapGesture {
             collapsed.toggle()
-        }.padding(.all, 5).border(Color.deemphasizedBackground, width: 1).cornerRadius(.defaultCornerRadius)
+        }
+        .border(Color.deemphasizedBackground, width: 1)
+        .cornerRadius(.defaultCornerRadius)
     }
 }
 
