@@ -11,19 +11,19 @@ import SwiftUI
 
 class LoadState<T, E: Error>: ObservableObject {
     enum Status {
-    case unloaded
-    case loading
-    case loaded(T)
-    case errored(E)
-}
+        case unloaded
+        case loading
+        case loaded(T)
+        case errored(E)
+    }
 
     @Published var status: Status = .unloaded
     let load: (_ callback: (Result<T, E>) -> Void) -> Void
-    
+
     init(load: @escaping (_ callback: (Result<T, E>) -> Void) -> Void) {
         self.load = load
     }
-    
+
     func reload() {
         self.status = .loading
         self.load { result in
@@ -34,8 +34,7 @@ class LoadState<T, E: Error>: ObservableObject {
                 self.status = .errored(error)
             }
         }
-        }
-}
+    }
 }
 
 struct LoadModelView<T, V: View, E: Error>: View {

@@ -11,7 +11,7 @@ import SwiftUI
 struct ContentView: View {
     var state: LoadState<Homebrew.OutdatedResponse, Error>
     let size: NSSize
-    
+
     var body: some View {
         VStack {
             LoadModelView(load: {

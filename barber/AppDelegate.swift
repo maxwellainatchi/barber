@@ -13,7 +13,7 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate {
     var popover: NSPopover!
     var statusBarItem: NSStatusItem!
-    
+
     var state: LoadState<Homebrew.OutdatedResponse, Error> = .init {
         $0(Result { try Homebrew.shared.outdated() })
     }

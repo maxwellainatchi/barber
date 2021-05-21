@@ -44,13 +44,13 @@ private class HomebrewCLIExecutor: HomebrewExecutor {
 
 class Homebrew {
     public static var shared = Homebrew(executor: HomebrewCLIExecutor())
-    
+
     private static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
-    
+
     struct OutdatedEntry: Codable {
         let name: String
         let installedVersions: [String]
@@ -58,7 +58,7 @@ class Homebrew {
         let pinned: Bool
         let pinnedVersion: String?
     }
-    
+
     struct OutdatedCaskEntry: Codable {
         let name: String
         let installedVersions: String
@@ -71,15 +71,15 @@ class Homebrew {
     }
 
     private let executor: HomebrewExecutor
-    
+
     private init(executor: HomebrewExecutor) {
         self.executor = executor
     }
-    
+
     func outdated() throws -> OutdatedResponse {
         try self.execute(command: "outdated", "--json=v2", andLoadInto: OutdatedResponse.self)
     }
-    
+
     private func execute<C: Decodable>(command: String, _ arguments: String..., andLoadInto decodable: C.Type) throws -> C {
         let data = try self.executor.execute(command: command, arguments: arguments)
         return try Self.decoder.decode(decodable, from: data)
