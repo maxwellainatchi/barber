@@ -51,25 +51,6 @@ class Homebrew {
         return decoder
     }()
 
-    struct OutdatedEntry: Codable {
-        let name: String
-        let installedVersions: [String]
-        let currentVersion: String
-        let pinned: Bool
-        let pinnedVersion: String?
-    }
-
-    struct OutdatedCaskEntry: Codable {
-        let name: String
-        let installedVersions: String
-        let currentVersion: String
-    }
-
-    struct OutdatedResponse: Codable {
-        let formulae: [OutdatedEntry]
-        let casks: [OutdatedCaskEntry]
-    }
-
     private let executor: HomebrewExecutor
 
     private init(executor: HomebrewExecutor) {
@@ -80,9 +61,18 @@ class Homebrew {
         try self.execute(command: "outdated", "--json=v2", andLoadInto: OutdatedResponse.self)
     }
 
+    func info(name: String) throws -> InfoResponse {
+        try self.execute(command: "info", name, "--json=v2", andLoadInto: InfoResponse.self)
+    }
+
     private func execute<C: Decodable>(command: String, _ arguments: String..., andLoadInto decodable: C.Type) throws -> C {
-        let data = try self.executor.execute(command: command, arguments: arguments)
-        return try Self.decoder.decode(decodable, from: data)
+        do {
+            let data = try self.executor.execute(command: command, arguments: arguments)
+            return try Self.decoder.decode(decodable, from: data)
+        } catch {
+            print("Error executing:", error)
+            throw error
+        }
     }
 }
 

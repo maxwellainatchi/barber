@@ -15,6 +15,7 @@
 		5095B4E824C392ED00A4483C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5095B4E624C392ED00A4483C /* Main.storyboard */; };
 		50DB8A42265470B7007456FD /* ShellOut in Frameworks */ = {isa = PBXBuildFile; productRef = 50DB8A41265470B7007456FD /* ShellOut */; };
 		50DB8A4726573D17007456FD /* LoadModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DB8A4626573D17007456FD /* LoadModelView.swift */; };
+		50DB8A4D26575D35007456FD /* Homebrew+ResponseModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DB8A4C26575D35007456FD /* Homebrew+ResponseModels.swift */; };
 		50FE66D726517FA4003B0B90 /* mock-data in Resources */ = {isa = PBXBuildFile; fileRef = 50FE66D626517FA4003B0B90 /* mock-data */; };
 		50FE66DA26517FD4003B0B90 /* Homebrew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE66D926517FD4003B0B90 /* Homebrew.swift */; };
 		50FE66DD2651863A003B0B90 /* OutdatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE66DC2651863A003B0B90 /* OutdatedView.swift */; };
@@ -31,6 +32,7 @@
 		5095B4E924C392ED00A4483C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5095B4EA24C392ED00A4483C /* barber.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = barber.entitlements; sourceTree = "<group>"; };
 		50DB8A4626573D17007456FD /* LoadModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadModelView.swift; sourceTree = "<group>"; };
+		50DB8A4C26575D35007456FD /* Homebrew+ResponseModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Homebrew+ResponseModels.swift"; sourceTree = "<group>"; };
 		50FE66D626517FA4003B0B90 /* mock-data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "mock-data"; sourceTree = "<group>"; };
 		50FE66D926517FD4003B0B90 /* Homebrew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homebrew.swift; sourceTree = "<group>"; };
 		50FE66DC2651863A003B0B90 /* OutdatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutdatedView.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				5095B4DE24C392E700A4483C /* barber.xcdatamodeld */,
 				5095B4E324C392ED00A4483C /* Preview Content */,
 				50FE66D926517FD4003B0B90 /* Homebrew.swift */,
+				50DB8A4C26575D35007456FD /* Homebrew+ResponseModels.swift */,
 			);
 			path = barber;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				50FE66DD2651863A003B0B90 /* OutdatedView.swift in Sources */,
 				50FE66DA26517FD4003B0B90 /* Homebrew.swift in Sources */,
 				5095B4E024C392E700A4483C /* barber.xcdatamodeld in Sources */,
+				50DB8A4D26575D35007456FD /* Homebrew+ResponseModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
