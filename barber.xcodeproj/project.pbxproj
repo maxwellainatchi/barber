@@ -14,6 +14,7 @@
 		5095B4E524C392ED00A4483C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5095B4E424C392ED00A4483C /* Preview Assets.xcassets */; };
 		5095B4E824C392ED00A4483C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5095B4E624C392ED00A4483C /* Main.storyboard */; };
 		50DB8A42265470B7007456FD /* ShellOut in Frameworks */ = {isa = PBXBuildFile; productRef = 50DB8A41265470B7007456FD /* ShellOut */; };
+		50DB8A4726573D17007456FD /* LoadModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DB8A4626573D17007456FD /* LoadModelView.swift */; };
 		50FE66D726517FA4003B0B90 /* mock-data in Resources */ = {isa = PBXBuildFile; fileRef = 50FE66D626517FA4003B0B90 /* mock-data */; };
 		50FE66DA26517FD4003B0B90 /* Homebrew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE66D926517FD4003B0B90 /* Homebrew.swift */; };
 		50FE66DD2651863A003B0B90 /* OutdatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE66DC2651863A003B0B90 /* OutdatedView.swift */; };
@@ -29,6 +30,7 @@
 		5095B4E724C392ED00A4483C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5095B4E924C392ED00A4483C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5095B4EA24C392ED00A4483C /* barber.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = barber.entitlements; sourceTree = "<group>"; };
+		50DB8A4626573D17007456FD /* LoadModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadModelView.swift; sourceTree = "<group>"; };
 		50FE66D626517FA4003B0B90 /* mock-data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "mock-data"; sourceTree = "<group>"; };
 		50FE66D926517FD4003B0B90 /* Homebrew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homebrew.swift; sourceTree = "<group>"; };
 		50FE66DC2651863A003B0B90 /* OutdatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutdatedView.swift; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 		5033B3082651C875002810FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				50DB8A4526573CFD007456FD /* Utility */,
 				50FE66DC2651863A003B0B90 /* OutdatedView.swift */,
 			);
 			path = Views;
@@ -94,6 +97,14 @@
 				5095B4E424C392ED00A4483C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		50DB8A4526573CFD007456FD /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				50DB8A4626573D17007456FD /* LoadModelView.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +187,7 @@
 			files = (
 				5095B4DD24C392E700A4483C /* ContentView.swift in Sources */,
 				5095B4DB24C392E700A4483C /* AppDelegate.swift in Sources */,
+				50DB8A4726573D17007456FD /* LoadModelView.swift in Sources */,
 				50FE66DD2651863A003B0B90 /* OutdatedView.swift in Sources */,
 				50FE66DA26517FD4003B0B90 /* Homebrew.swift in Sources */,
 				5095B4E024C392E700A4483C /* barber.xcdatamodeld in Sources */,
@@ -247,7 +259,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -302,7 +314,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -328,7 +340,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.maxainatchi.barber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -352,7 +364,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.maxainatchi.barber;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
