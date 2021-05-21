@@ -23,7 +23,12 @@ class LoadState<T, E: Error>: ObservableObject {
     init(load: @escaping (_ callback: (Result<T, E>) -> Void) -> Void) {
         self.load = load
     }
-
+    
+    convenience init(load: @autoclosure @escaping () -> Result<T, E>) {
+        self.init {
+            $0(load())
+        }
+    }
     func reload() {
         self.status = .loading
         self.load { result in
@@ -33,6 +38,14 @@ class LoadState<T, E: Error>: ObservableObject {
             case let .failure(error):
                 self.status = .errored(error)
             }
+        }
+    }
+}
+
+extension LoadState where E == Error {
+    convenience init(load: @autoclosure @escaping () throws -> T) {
+        self.init {
+            $0(Result { try load() })
         }
     }
 }
@@ -51,11 +64,9 @@ struct LoadModelView<T, V: View, E: Error>: View {
 
     @ObservedObject var state: LoadState<T, E>
     let innerViewConstructor: (T) -> V
-    let load: (_ callback: (Result<T, E>) -> Void) -> Void
 
-    init(load: @escaping (_ callback: (Result<T, E>) -> Void) -> Void, state: LoadState<T, E>, innerViewConstructor: @escaping (T) -> V) {
+    init(state: LoadState<T, E>, innerViewConstructor: @escaping (T) -> V) {
         self.innerViewConstructor = innerViewConstructor
-        self.load = load
         self.state = state
     }
 

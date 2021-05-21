@@ -14,9 +14,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            LoadModelView(load: {
-                $0(Result { try Homebrew.shared.outdated() })
-            }, state: self.state) { outdated in
+            LoadModelView(state: self.state) { outdated in
                 List(outdated.formulae) { entry in
                     OutdatedView(entry: entry)
                 }
