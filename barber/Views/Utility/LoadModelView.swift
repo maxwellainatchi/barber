@@ -32,14 +32,13 @@ struct LoadModelView<T, V: View, E: Error>: View, Reloadable {
         }
     }
 
-    @State var state: LoadState<T, E>
+    @State var state: LoadState<T, E> = .unloaded
     let innerViewConstructor: (T) -> V
     let load: (_ callback: (Result<T, E>) -> Void) -> Void
 
     init(load: @escaping (_ callback: (Result<T, E>) -> Void) -> Void, innerViewConstructor: @escaping (T) -> V) {
         self.innerViewConstructor = innerViewConstructor
         self.load = load
-        _state = .init(initialValue: .loading)
     }
 
     var body: some View {
