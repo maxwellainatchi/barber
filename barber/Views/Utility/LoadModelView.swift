@@ -15,6 +15,13 @@ class LoadState<T, E: Error>: ObservableObject {
         case loading
         case loaded(T)
         case errored(E)
+        
+        var shouldReload: Bool {
+            switch self {
+            case .unloaded, .errored: return true
+            case .loading, .loaded: return false
+            }
+        }
     }
 
     @Published var status: Status = .unloaded
@@ -29,7 +36,14 @@ class LoadState<T, E: Error>: ObservableObject {
             $0(load())
         }
     }
+    
+    // NOTE: This is here so we can use `self.reload` by reference
     func reload() {
+        self.reload(force: false)
+    }
+
+    func reload(force: Bool) {
+        guard force || self.status.shouldReload else { return }
         self.status = .loading
         self.load { result in
             switch result {
