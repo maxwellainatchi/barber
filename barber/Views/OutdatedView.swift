@@ -30,16 +30,29 @@ struct OutdatedView: View {
     var entry: Homebrew.OutdatedEntry
 
     @State var collapsed = true
+    @ObservedObject var infoState: LoadState<Homebrew.InfoResponse, Error>
+    
+    init(entry: Homebrew.OutdatedEntry) {
+        self.entry = entry
+        self.infoState = LoadState(load: try Homebrew.shared.info(name: entry.name))
+    }
 
     var body: some View {
-        HStack {
-            Text(collapsed ? "▶︎" : "▼")
-            Code(text: entry.name)
-            Text("\(entry.installedVersions.first ?? "") → \(entry.currentVersion)")
-            Spacer()
-        }.onTapGesture {
-            collapsed.toggle()
-        }
+        VStack {
+            HStack {
+                Text(collapsed ? "▶︎" : "▼")
+                Code(text: entry.name)
+                Text("\(entry.installedVersions.first ?? "") → \(entry.currentVersion)")
+                Spacer()
+            }.onTapGesture {
+                collapsed.toggle()
+            }
+            if !self.collapsed {
+                InfoView(state: self.infoState).onAppear {
+                    self.infoState.reload()
+                }
+            }
+        }.animation(.interactiveSpring())
         .border(Color.deemphasizedBackground, width: 1)
         .cornerRadius(.defaultCornerRadius)
     }
