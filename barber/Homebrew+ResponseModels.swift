@@ -30,6 +30,7 @@ extension Homebrew {
 
     typealias OutdatedResponse = Response<OutdatedEntry, OutdatedCaskEntry>
 
+    // Note: This entry is intentionally incomplete
     struct InfoEntry: Codable {
         struct Versions: Codable {
             let stable: String

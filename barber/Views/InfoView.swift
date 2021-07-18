@@ -11,10 +11,17 @@ import SwiftUI
 
 struct InfoView: View {
     @ObservedObject var state: LoadState<Homebrew.InfoResponse, Error>
-    
+
     var body: some View {
         LoadModelView(state: self.state) { response in
-            Code(text: response.formulae.count.description)
-        }
+            VStack {
+                if let info = response.formulae.first ?? response.casks.first {
+                    Text(info.desc).lineLimit(nil)
+                    Link("Homepage", destination: info.homepage)
+                } else {
+                    Text("An error occurred!")
+                }
+            }
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
