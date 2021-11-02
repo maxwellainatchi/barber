@@ -20,6 +20,8 @@
 		50FE66D726517FA4003B0B90 /* mock-data in Resources */ = {isa = PBXBuildFile; fileRef = 50FE66D626517FA4003B0B90 /* mock-data */; };
 		50FE66DA26517FD4003B0B90 /* Homebrew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE66D926517FD4003B0B90 /* Homebrew.swift */; };
 		50FE66DD2651863A003B0B90 /* OutdatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE66DC2651863A003B0B90 /* OutdatedView.swift */; };
+		C3136488273190070040DADF /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = C3136487273190070040DADF /* Introspect */; };
+		C313648A2731905F0040DADF /* ListModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31364892731905F0040DADF /* ListModifiers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,7 @@
 		50FE66D626517FA4003B0B90 /* mock-data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "mock-data"; sourceTree = "<group>"; };
 		50FE66D926517FD4003B0B90 /* Homebrew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homebrew.swift; sourceTree = "<group>"; };
 		50FE66DC2651863A003B0B90 /* OutdatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutdatedView.swift; sourceTree = "<group>"; };
+		C31364892731905F0040DADF /* ListModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModifiers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +49,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50DB8A42265470B7007456FD /* ShellOut in Frameworks */,
+				C3136488273190070040DADF /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +85,7 @@
 		5095B4D924C392E700A4483C /* barber */ = {
 			isa = PBXGroup;
 			children = (
+				C313648B273190640040DADF /* Modifiers */,
 				C3136485273184A20040DADF /* Services */,
 				5033B3082651C875002810FD /* Views */,
 				50FE66D626517FA4003B0B90 /* mock-data */,
@@ -121,6 +126,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		C313648B273190640040DADF /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				C31364892731905F0040DADF /* ListModifiers.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,6 +152,7 @@
 			name = barber;
 			packageProductDependencies = (
 				50DB8A41265470B7007456FD /* ShellOut */,
+				C3136487273190070040DADF /* Introspect */,
 			);
 			productName = barber;
 			productReference = 5095B4D724C392E700A4483C /* barber.app */;
@@ -170,6 +184,7 @@
 			mainGroup = 5095B4CE24C392E700A4483C;
 			packageReferences = (
 				50DB8A40265470B7007456FD /* XCRemoteSwiftPackageReference "ShellOut" */,
+				C3136486273190070040DADF /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 5095B4D824C392E700A4483C /* Products */;
 			projectDirPath = "";
@@ -205,6 +220,7 @@
 				50FE66DD2651863A003B0B90 /* OutdatedView.swift in Sources */,
 				50FE66DA26517FD4003B0B90 /* Homebrew.swift in Sources */,
 				5095B4E024C392E700A4483C /* barber.xcdatamodeld in Sources */,
+				C313648A2731905F0040DADF /* ListModifiers.swift in Sources */,
 				50DB8A4B265755AC007456FD /* InfoView.swift in Sources */,
 				50DB8A4D26575D35007456FD /* Homebrew+ResponseModels.swift in Sources */,
 			);
@@ -419,6 +435,14 @@
 				minimumVersion = 2.3.0;
 			};
 		};
+		C3136486273190070040DADF /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -426,6 +450,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 50DB8A40265470B7007456FD /* XCRemoteSwiftPackageReference "ShellOut" */;
 			productName = ShellOut;
+		};
+		C3136487273190070040DADF /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C3136486273190070040DADF /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 
