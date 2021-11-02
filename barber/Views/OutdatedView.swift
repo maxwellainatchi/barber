@@ -8,11 +8,6 @@
 
 import SwiftUI
 
-extension Color {
-    static let background = Color.white.opacity(0.2)
-    static let deemphasizedBackground = Color.background.opacity(0.1)
-}
-
 extension CGFloat {
     static let defaultCornerRadius: CGFloat = 3.0
 }
@@ -51,12 +46,12 @@ struct OutdatedView: View {
                 collapsed.toggle()
             }
             if !self.collapsed {
+                Divider()
                 InfoView(state: self.infoState).onAppear {
                     self.infoState.reload()
                 }
             }
         }.animation(.interactiveSpring())
-            .border(Color.deemphasizedBackground, width: 1)
             .cornerRadius(.defaultCornerRadius)
     }
 }
