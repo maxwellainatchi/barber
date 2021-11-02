@@ -13,8 +13,8 @@ struct UnderlyingInfoView: View {
     var info: Homebrew.InfoEntry
 
     var body: some View {
-        if info.outdated {
-            Text("Deprecated as of \(DateFormatter().string(from: info.deprecationDate!)) due to \"\(info.deprecationReason ?? "")\"")
+        if info.deprecated, let deprecationDate = info.deprecationDate {
+            Text("Deprecated as of \(DateFormatter().string(from: deprecationDate)) due to \"\(info.deprecationReason ?? "")\"")
         }
         Text(info.desc).lineLimit(nil)
         Link("Homepage", destination: info.homepage)
