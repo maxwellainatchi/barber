@@ -15,7 +15,7 @@ class LoadState<T>: ObservableObject {
         case loading
         case loaded(T)
         case errored(Error)
-        
+
         var shouldReload: Bool {
             switch self {
             case .unloaded, .errored: return true
@@ -27,21 +27,21 @@ class LoadState<T>: ObservableObject {
     @Published var status: Status = .unloaded
     let load: () async throws -> T
 
-    init(load: @escaping (() async throws ->  T)) {
+    init(load: @escaping (() async throws -> T)) {
         self.load = load
     }
-    
+
     // NOTE: This is here so we can use `self.reload` by reference
     func reload() {
         self.reload(force: false)
     }
 
     func reload(force: Bool) {
-        Task.init {
+        Task {
             await self.reloadAsync(force: force)
         }
     }
-    
+
     @MainActor
     func reloadAsync(force: Bool) async {
         guard force || self.status.shouldReload else { return }

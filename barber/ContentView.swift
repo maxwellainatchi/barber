@@ -6,31 +6,31 @@
 //  Copyright © 2020 Max Ainatchi, Inc. All rights reserved.
 //
 
-import SwiftUI
 import Introspect
+import SwiftUI
 
 #if DEBUG
-extension ColorScheme {
-    func toggled() -> ColorScheme {
-        switch self {
-        case .light:
-            return .dark
-        case .dark:
-            return .light
-        @unknown default: fatalError()
+    extension ColorScheme {
+        func toggled() -> ColorScheme {
+            switch self {
+            case .light:
+                return .dark
+            case .dark:
+                return .light
+            @unknown default: fatalError()
+            }
         }
     }
-}
 
-extension ColorScheme: CustomStringConvertible {
-    public var description: String {
-        switch self {
-        case .dark: return "dark"
-        case .light: return "light"
-        @unknown default: return "unknown"
+    extension ColorScheme: CustomStringConvertible {
+        public var description: String {
+            switch self {
+            case .dark: return "dark"
+            case .light: return "light"
+            @unknown default: return "unknown"
+            }
         }
     }
-}
 #endif
 
 extension EdgeInsets {
@@ -42,9 +42,9 @@ extension EdgeInsets {
 struct ContentView: View {
     var state: LoadState<Homebrew.OutdatedResponse>
     let size: NSSize
-    
+
     #if DEBUG
-    @State var colorScheme: ColorScheme = .dark
+        @State var colorScheme: ColorScheme = .dark
     #endif
 
     var body: some View {
@@ -62,15 +62,15 @@ struct ContentView: View {
             }
             Button("Quit") { exit(0) }.padding(.top, 10)
             #if DEBUG
-            Button("Enable \(self.colorScheme.toggled().description) mode", action: {
-                self.colorScheme = self.colorScheme.toggled()
-            })
+                Button("Enable \(self.colorScheme.toggled().description) mode", action: {
+                    self.colorScheme = self.colorScheme.toggled()
+                })
             #endif
         }
         .padding(.bottom)
         .frame(width: size.width, height: size.height)
         #if DEBUG
-        .preferredColorScheme(self.colorScheme)
+            .preferredColorScheme(self.colorScheme)
         #endif
     }
 }
