@@ -34,7 +34,7 @@ struct OutdatedView: View {
 
     init(entry: Homebrew.OutdatedEntry) {
         self.entry = entry
-        self.infoState = LoadState(load: { Homebrew.shared.info(name: entry.name, callback: $0) })
+        self.infoState = LoadState(load: { await Homebrew.shared.info(name: entry.name) })
     }
 
     var body: some View {

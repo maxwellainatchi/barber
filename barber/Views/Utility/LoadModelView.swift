@@ -25,15 +25,15 @@ class LoadState<T, E: Error>: ObservableObject {
     }
 
     @Published var status: Status = .unloaded
-    let load: (@escaping (Result<T, E>) -> Void) -> Void
+    let load: () async -> Result<T, E>
 
-    init(load: @escaping (@escaping (Result<T, E>) -> Void) -> Void) {
+    init(load: @escaping (() async ->  Result<T, E>)) {
         self.load = load
     }
     
     convenience init(result load: @autoclosure @escaping () -> Result<T, E>) {
         self.init {
-            $0(load())
+            load()
         }
     }
     
@@ -45,7 +45,8 @@ class LoadState<T, E: Error>: ObservableObject {
     func reload(force: Bool) {
         guard force || self.status.shouldReload else { return }
         self.status = .loading
-        self.load { result in
+        Task.init {
+            let result = await self.load()
             switch result {
             case let .success(model):
                 self.status = .loaded(model)
@@ -59,7 +60,7 @@ class LoadState<T, E: Error>: ObservableObject {
 extension LoadState where E == Error {
     convenience init(value load: @autoclosure @escaping () throws -> T) {
         self.init {
-            $0(Result { try load() })
+            Result { try load() }
         }
     }
 }

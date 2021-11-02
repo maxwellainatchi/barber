@@ -58,26 +58,21 @@ class Homebrew {
         self.executor = executor
     }
 
-    func outdated(callback: @escaping (Result<OutdatedResponse, Error>) -> Void) {
-        self.execute(command: "outdated", "--json=v2", andLoadInto: OutdatedResponse.self, callback: callback)
+    func outdated() async -> Result<OutdatedResponse, Error> {
+        await self.execute(command: "outdated", "--json=v2", andLoadInto: OutdatedResponse.self)
     }
 
-    func info(name: String, callback: @escaping (Result<InfoResponse, Error>) -> Void) {
-        self.execute(command: "info", name, "--json=v2", andLoadInto: InfoResponse.self, callback: callback)
+    func info(name: String) async -> Result<InfoResponse, Error> {
+        await self.execute(command: "info", name, "--json=v2", andLoadInto: InfoResponse.self)
     }
 
-    private func execute<C: Decodable>(command: String, _ arguments: String..., andLoadInto decodable: C.Type, callback: @escaping (Result<C, Error>) -> Void) {
-        Self.queue.async {
-            let result = Result { () -> C in
-                let data = try self.executor.execute(command: command, arguments: arguments)
-                return try Self.decoder.decode(decodable, from: data)
-            }
-            if case .failure(let error) = result {
-                print("Error executing:", error)
-            }
-            DispatchQueue.main.async {
-                callback(result)
-            }
+    private func execute<C: Decodable>(command: String, _ arguments: String..., andLoadInto decodable: C.Type) async -> Result<C, Error> {
+        Result { () -> C in
+            let data = try self.executor.execute(command: command, arguments: arguments)
+            return try Self.decoder.decode(decodable, from: data)
+        }.mapError {
+            print("Error executing:", $0)
+            return $0
         }
     }
 }
