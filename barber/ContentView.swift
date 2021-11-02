@@ -21,7 +21,7 @@ struct ContentView: View {
                             OutdatedView(entry: entry)
                         }
                     } else {
-                        LoadModelView<Homebrew.OutdatedResponse, ContentView, Error>.TextWithLoadButton(text: "Up to date 🎉", reload: self.state.reload)
+                        TextWithLoadButton(text: "Up to date 🎉", reload: { self.state.reload(force: true) })
                     }
                 }
             }

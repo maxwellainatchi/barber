@@ -65,18 +65,18 @@ extension LoadState where E == Error {
     }
 }
 
-struct LoadModelView<T, V: View, E: Error>: View {
-    struct TextWithLoadButton: View {
-        let text: String
-        let reload: () -> Void
-        var body: some View {
-            VStack {
-                Text(text)
-                Button("Reload", action: reload)
-            }
+struct TextWithLoadButton: View {
+    let text: String
+    let reload: () -> Void
+    var body: some View {
+        VStack {
+            Text(text)
+            Button("Reload", action: reload)
         }
     }
+}
 
+struct LoadModelView<T, V: View, E: Error>: View {
     @ObservedObject var state: LoadState<T, E>
     let innerViewConstructor: (T) -> V
 
