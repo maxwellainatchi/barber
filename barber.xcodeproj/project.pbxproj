@@ -81,6 +81,7 @@
 		5095B4D924C392E700A4483C /* barber */ = {
 			isa = PBXGroup;
 			children = (
+				C3136485273184A20040DADF /* Services */,
 				5033B3082651C875002810FD /* Views */,
 				50FE66D626517FA4003B0B90 /* mock-data */,
 				5095B4DA24C392E700A4483C /* AppDelegate.swift */,
@@ -91,8 +92,6 @@
 				5095B4EA24C392ED00A4483C /* barber.entitlements */,
 				5095B4DE24C392E700A4483C /* barber.xcdatamodeld */,
 				5095B4E324C392ED00A4483C /* Preview Content */,
-				50FE66D926517FD4003B0B90 /* Homebrew.swift */,
-				50DB8A4C26575D35007456FD /* Homebrew+ResponseModels.swift */,
 			);
 			path = barber;
 			sourceTree = "<group>";
@@ -111,6 +110,15 @@
 				50DB8A4626573D17007456FD /* LoadModelView.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		C3136485273184A20040DADF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				50FE66D926517FD4003B0B90 /* Homebrew.swift */,
+				50DB8A4C26575D35007456FD /* Homebrew+ResponseModels.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
