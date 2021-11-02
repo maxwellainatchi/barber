@@ -66,9 +66,9 @@ private class HomebrewCLIExecutor: HomebrewExecutor {
     }
 }
 
-class Homebrew {
+actor Homebrew {
     private static let queue = DispatchQueue(label: "Homebrew", attributes: .concurrent)
-    public static var shared = Homebrew(executor: HomebrewCLIExecutor())
+    public static var shared = Homebrew(executor: HomebrewJSONLoader())
 
     private static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -82,21 +82,21 @@ class Homebrew {
         self.executor = executor
     }
 
-    func outdated() async -> Result<OutdatedResponse, Error> {
-        await self.execute(command: "outdated", "--json=v2", andLoadInto: OutdatedResponse.self)
+    func outdated() async throws -> OutdatedResponse {
+        try self.execute(command: "outdated", "--json=v2", andLoadInto: OutdatedResponse.self)
     }
 
-    func info(name: String) async -> Result<InfoResponse, Error> {
-        await self.execute(command: "info", name, "--json=v2", andLoadInto: InfoResponse.self)
+    func info(name: String) async throws -> InfoResponse {
+        try self.execute(command: "info", name, "--json=v2", andLoadInto: InfoResponse.self)
     }
 
-    private func execute<C: Decodable>(command: String, _ arguments: String..., andLoadInto decodable: C.Type) async -> Result<C, Error> {
-        Result { () -> C in
+    private func execute<C: Decodable>(command: String, _ arguments: String..., andLoadInto decodable: C.Type) throws -> C {
+        do {
             let data = try self.executor.execute(command: command, arguments: arguments)
             return try Self.decoder.decode(decodable, from: data)
-        }.mapError {
-            print("Error executing:", $0)
-            return $0
+        } catch {
+            print("Error executing:", error)
+            throw error
         }
     }
 }

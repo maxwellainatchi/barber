@@ -25,11 +25,11 @@ struct OutdatedView: View {
     var entry: Homebrew.OutdatedEntry
 
     @State var collapsed = true
-    @ObservedObject var infoState: LoadState<Homebrew.InfoResponse, Error>
+    @ObservedObject var infoState: LoadState<Homebrew.InfoResponse>
 
     init(entry: Homebrew.OutdatedEntry) {
         self.entry = entry
-        self.infoState = LoadState(load: { await Homebrew.shared.info(name: entry.name) })
+        self.infoState = LoadState(load: { try await Homebrew.shared.info(name: entry.name) })
     }
 
     var body: some View {

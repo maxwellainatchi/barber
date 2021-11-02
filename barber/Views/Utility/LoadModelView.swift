@@ -9,12 +9,12 @@
 import Foundation
 import SwiftUI
 
-class LoadState<T, E: Error>: ObservableObject {
+class LoadState<T>: ObservableObject {
     enum Status {
         case unloaded
         case loading
         case loaded(T)
-        case errored(E)
+        case errored(Error)
         
         var shouldReload: Bool {
             switch self {
@@ -25,16 +25,10 @@ class LoadState<T, E: Error>: ObservableObject {
     }
 
     @Published var status: Status = .unloaded
-    let load: () async -> Result<T, E>
+    let load: () async throws -> T
 
-    init(load: @escaping (() async ->  Result<T, E>)) {
+    init(load: @escaping (() async throws ->  T)) {
         self.load = load
-    }
-    
-    convenience init(result load: @autoclosure @escaping () -> Result<T, E>) {
-        self.init {
-            load()
-        }
     }
     
     // NOTE: This is here so we can use `self.reload` by reference
@@ -43,24 +37,19 @@ class LoadState<T, E: Error>: ObservableObject {
     }
 
     func reload(force: Bool) {
-        guard force || self.status.shouldReload else { return }
-        self.status = .loading
         Task.init {
-            let result = await self.load()
-            switch result {
-            case let .success(model):
-                self.status = .loaded(model)
-            case let .failure(error):
-                self.status = .errored(error)
-            }
+            await self.reloadAsync(force: force)
         }
     }
-}
-
-extension LoadState where E == Error {
-    convenience init(value load: @autoclosure @escaping () throws -> T) {
-        self.init {
-            Result { try load() }
+    
+    @MainActor
+    func reloadAsync(force: Bool) async {
+        guard force || self.status.shouldReload else { return }
+        self.status = .loading
+        do {
+            self.status = .loaded(try await self.load())
+        } catch {
+            self.status = .errored(error)
         }
     }
 }
@@ -76,11 +65,11 @@ struct TextWithLoadButton: View {
     }
 }
 
-struct LoadModelView<T, V: View, E: Error>: View {
-    @ObservedObject var state: LoadState<T, E>
+struct LoadModelView<T, V: View>: View {
+    @ObservedObject var state: LoadState<T>
     let innerViewConstructor: (T) -> V
 
-    init(state: LoadState<T, E>, innerViewConstructor: @escaping (T) -> V) {
+    init(state: LoadState<T>, innerViewConstructor: @escaping (T) -> V) {
         self.innerViewConstructor = innerViewConstructor
         self.state = state
     }

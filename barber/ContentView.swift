@@ -40,7 +40,7 @@ extension EdgeInsets {
 }
 
 struct ContentView: View {
-    var state: LoadState<Homebrew.OutdatedResponse, Error>
+    var state: LoadState<Homebrew.OutdatedResponse>
     let size: NSSize
     
     #if DEBUG

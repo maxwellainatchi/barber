@@ -22,7 +22,7 @@ struct UnderlyingInfoView: View {
 }
 
 struct InfoView: View {
-    @ObservedObject var state: LoadState<Homebrew.InfoResponse, Error>
+    @ObservedObject var state: LoadState<Homebrew.InfoResponse>
 
     var body: some View {
         LoadModelView(state: self.state) { response in
