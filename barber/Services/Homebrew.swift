@@ -36,9 +36,33 @@ private class HomebrewJSONLoader: HomebrewExecutor {
     }
 }
 
+func isAppleSilicon() -> Bool {
+    var systeminfo = utsname()
+    uname(&systeminfo)
+    let machine = withUnsafeBytes(of: &systeminfo.machine) { bufPtr -> String? in
+        let data = Data(bufPtr)
+        if let lastIndex = data.lastIndex(where: { $0 != 0 }) {
+            return String(data: data[0 ... lastIndex], encoding: .isoLatin1)
+        } else {
+            return String(data: data, encoding: .isoLatin1)
+        }
+    }
+    return machine == "arm64"
+}
+
 private class HomebrewCLIExecutor: HomebrewExecutor {
+    private static func findHomebrew() -> String {
+        isAppleSilicon() ? "/opt/homebrew/bin/brew" : "/usr/local/bin/brew"
+    }
+
+    private let homebrewPath: String
+
+    init() {
+        self.homebrewPath = Self.findHomebrew()
+    }
+
     func execute(command: String, arguments: [String]) throws -> Data {
-        try shellOut(to: "/usr/local/bin/brew", arguments: [command] + arguments).data(using: .utf8)!
+        try shellOut(to: self.homebrewPath, arguments: [command] + arguments).data(using: .utf8)!
     }
 }
 
