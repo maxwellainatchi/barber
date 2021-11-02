@@ -9,6 +9,18 @@
 import Foundation
 import SwiftUI
 
+struct UnderlyingInfoView: View {
+    var info: Homebrew.InfoEntry
+
+    var body: some View {
+        if info.outdated {
+            Text("Deprecated as of \(DateFormatter().string(from: info.deprecationDate!)) due to \"\(info.deprecationReason ?? "")\"")
+        }
+        Text(info.desc).lineLimit(nil)
+        Link("Homepage", destination: info.homepage)
+    }
+}
+
 struct InfoView: View {
     @ObservedObject var state: LoadState<Homebrew.InfoResponse, Error>
 
@@ -16,8 +28,7 @@ struct InfoView: View {
         LoadModelView(state: self.state) { response in
             VStack {
                 if let info = response.formulae.first ?? response.casks.first {
-                    Text(info.desc).lineLimit(nil)
-                    Link("Homepage", destination: info.homepage)
+                    UnderlyingInfoView(info: info)
                 } else {
                     Text("An error occurred!")
                 }
