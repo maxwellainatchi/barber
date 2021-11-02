@@ -15,8 +15,14 @@ struct ContentView: View {
     var body: some View {
         VStack {
             LoadModelView(state: self.state) { outdated in
-                List(outdated.formulae) { entry in
-                    OutdatedView(entry: entry)
+                HStack {
+                    if !outdated.formulae.isEmpty {
+                        List(outdated.formulae) { entry in
+                            OutdatedView(entry: entry)
+                        }
+                    } else {
+                        LoadModelView<Homebrew.OutdatedResponse, ContentView, Error>.TextWithLoadButton(text: "Up to date 🎉", reload: self.state.reload)
+                    }
                 }
             }
             Button("Quit") { exit(0) }.padding(.top, 10)
