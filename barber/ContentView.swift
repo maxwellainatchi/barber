@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Introspect
 
 struct ContentView: View {
     var state: LoadState<Homebrew.OutdatedResponse, Error>
@@ -19,7 +20,7 @@ struct ContentView: View {
                     if !outdated.formulae.isEmpty {
                         List(outdated.formulae) { entry in
                             OutdatedView(entry: entry)
-                        }
+                        }.backgroundColor(color: .clear)
                     } else {
                         TextWithLoadButton(text: "Up to date 🎉", reload: { self.state.reload(force: true) })
                     }
