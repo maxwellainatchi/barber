@@ -86,7 +86,6 @@ private class HomebrewCLIExecutor: HomebrewExecutor {
 }
 
 actor Homebrew {
-    private static let queue = DispatchQueue(label: "Homebrew", attributes: .concurrent)
     public static var shared = Homebrew(executor: HomebrewCLIExecutor())
 
     private static let decoder: JSONDecoder = {
