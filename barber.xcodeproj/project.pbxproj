@@ -22,6 +22,7 @@
 		50FE66DD2651863A003B0B90 /* OutdatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE66DC2651863A003B0B90 /* OutdatedView.swift */; };
 		C3136488273190070040DADF /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = C3136487273190070040DADF /* Introspect */; };
 		C313648A2731905F0040DADF /* ListModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31364892731905F0040DADF /* ListModifiers.swift */; };
+		C3D929182732C1BE0099C570 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D929172732C1BE0099C570 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		50FE66D926517FD4003B0B90 /* Homebrew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homebrew.swift; sourceTree = "<group>"; };
 		50FE66DC2651863A003B0B90 /* OutdatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutdatedView.swift; sourceTree = "<group>"; };
 		C31364892731905F0040DADF /* ListModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModifiers.swift; sourceTree = "<group>"; };
+		C3D929172732C1BE0099C570 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,8 @@
 				C313648B273190640040DADF /* Modifiers */,
 				C3136485273184A20040DADF /* Services */,
 				5033B3082651C875002810FD /* Views */,
+				C3D929192732C1CD0099C570 /* Utilities */,
+				5095B4E324C392ED00A4483C /* Preview Content */,
 				50FE66D626517FA4003B0B90 /* mock-data */,
 				5095B4DA24C392E700A4483C /* AppDelegate.swift */,
 				5095B4DC24C392E700A4483C /* ContentView.swift */,
@@ -96,7 +100,6 @@
 				5095B4E924C392ED00A4483C /* Info.plist */,
 				5095B4EA24C392ED00A4483C /* barber.entitlements */,
 				5095B4DE24C392E700A4483C /* barber.xcdatamodeld */,
-				5095B4E324C392ED00A4483C /* Preview Content */,
 			);
 			path = barber;
 			sourceTree = "<group>";
@@ -132,6 +135,14 @@
 				C31364892731905F0040DADF /* ListModifiers.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		C3D929192732C1CD0099C570 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C3D929172732C1BE0099C570 /* Config.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +232,7 @@
 				50FE66DA26517FD4003B0B90 /* Homebrew.swift in Sources */,
 				5095B4E024C392E700A4483C /* barber.xcdatamodeld in Sources */,
 				C313648A2731905F0040DADF /* ListModifiers.swift in Sources */,
+				C3D929182732C1BE0099C570 /* Config.swift in Sources */,
 				50DB8A4B265755AC007456FD /* InfoView.swift in Sources */,
 				50DB8A4D26575D35007456FD /* Homebrew+ResponseModels.swift in Sources */,
 			);

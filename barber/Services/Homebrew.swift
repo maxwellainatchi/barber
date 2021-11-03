@@ -109,7 +109,7 @@ actor Homebrew {
     }
 
     func update(name: String? = nil) async throws {
-        let result = try self.executor.execute(command: "upgrade", arguments: [name ?? "", "--dry-run"])
+        let result = try self.executor.execute(command: "upgrade", arguments: [name ?? "", Config.dryRun ? "--dry-run" : ""])
         print(String(data: result, encoding: .utf8) ?? "")
     }
 
