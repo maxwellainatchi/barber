@@ -26,22 +26,25 @@ struct OutdatedView: View {
 
     @State var collapsed = true
     @ObservedObject var infoState: LoadState<Homebrew.InfoResponse>
+    @ObservedObject var updateState: LoadState<Void>
 
     init(entry: Homebrew.OutdatedEntry) {
         self.entry = entry
         self.infoState = LoadState(load: { try await Homebrew.shared.info(name: entry.name) })
+        self.updateState = LoadState(load: { try await Homebrew.shared.update(name: entry.name) })
     }
 
     var body: some View {
         VStack {
             HStack {
                 Text(collapsed ? "▶︎" : "▼")
-                Code(text: entry.name)
-                Text("\(entry.installedVersions.first ?? "") → \(entry.currentVersion)")
-                Spacer()
                 if entry.pinned {
                     Text("📌")
                 }
+                Code(text: entry.name)
+                Text("\(entry.installedVersions.first ?? "") → \(entry.currentVersion)")
+                Spacer()
+                ActionButton(text: "Update", state: self.updateState, successView: { Text("✅") })
             }.onTapGesture {
                 collapsed.toggle()
             }
@@ -51,8 +54,8 @@ struct OutdatedView: View {
                     self.infoState.reload()
                 }
             }
-        }.animation(.interactiveSpring())
-            .cornerRadius(.defaultCornerRadius)
+        }
+        .cornerRadius(.defaultCornerRadius)
     }
 }
 

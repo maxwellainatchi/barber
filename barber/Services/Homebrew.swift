@@ -13,15 +13,34 @@ private protocol HomebrewExecutor {
     func execute(command: String, arguments: [String]) throws -> Data
 }
 
-private class HomebrewJSONLoader: HomebrewExecutor {
-    private let registeredFileNames: [String: String] = [
-        "outdated": "brew-outdated.json",
-    ]
+private class HomebrewMockExecutor: HomebrewExecutor {
+    fileprivate let realExecutor = HomebrewCLIExecutor()
 
-    func execute(command: String, arguments _: [String]) -> Data {
-        guard let name = self.registeredFileNames[command] else {
-            fatalError("No registered file name for command \(command)")
+    private enum Action: String {
+        case outdated, info, upgrade
+
+        func execute(_ executor: HomebrewMockExecutor, arguments: [String]) throws -> Data {
+            switch self {
+            case .outdated:
+                return executor.readFile(name: "brew-outdated.json")
+            case .info:
+                return executor.readFile(name: "brew-info-cairo.json")
+            case .upgrade:
+                let result = try executor.realExecutor.execute(command: self.rawValue, arguments: arguments)
+                print("upgrade \(arguments.joined(separator: " ")) result: \(String(data: result, encoding: .utf8) ?? "none")")
+                return result
+            }
         }
+    }
+
+    func execute(command: String, arguments: [String]) throws -> Data {
+        guard let action = Action(rawValue: command) else {
+            preconditionFailure("unknown command")
+        }
+        return try action.execute(self, arguments: arguments)
+    }
+
+    fileprivate func readFile(name: String) -> Data {
         let path = Bundle.main.resourceURL!
             .appendingPathComponent("mock-data")
             .appendingPathComponent(name)
@@ -68,7 +87,7 @@ private class HomebrewCLIExecutor: HomebrewExecutor {
 
 actor Homebrew {
     private static let queue = DispatchQueue(label: "Homebrew", attributes: .concurrent)
-    public static var shared = Homebrew(executor: HomebrewJSONLoader())
+    public static var shared = Homebrew(executor: HomebrewCLIExecutor())
 
     private static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -88,6 +107,11 @@ actor Homebrew {
 
     func info(name: String) async throws -> InfoResponse {
         try self.execute(command: "info", name, "--json=v2", andLoadInto: InfoResponse.self)
+    }
+
+    func update(name: String? = nil) async throws {
+        let result = try self.executor.execute(command: "upgrade", arguments: [name ?? "", "--dry-run"])
+        print(String(data: result, encoding: .utf8) ?? "")
     }
 
     private func execute<C: Decodable>(command: String, _ arguments: String..., andLoadInto decodable: C.Type) throws -> C {
