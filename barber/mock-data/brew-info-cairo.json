@@ -1,160 +1,268 @@
-[
-  {
-    "name": "cairo",
-    "full_name": "cairo",
-    "tap": "homebrew/core",
-    "oldname": null,
-    "aliases": [],
-    "versioned_formulae": [],
-    "desc": "Vector graphics library with cross-device output support",
-    "license": "LGPL-2.1-only or MPL-1.1",
-    "homepage": "https://cairographics.org/",
-    "versions": {
-      "stable": "1.16.0",
-      "head": "HEAD",
-      "bottle": true
-    },
-    "urls": {
-      "stable": {
-        "url": "https://cairographics.org/releases/cairo-1.16.0.tar.xz",
-        "tag": null,
-        "revision": null
-      }
-    },
-    "revision": 5,
-    "version_scheme": 0,
-    "bottle": {
-      "stable": {
-        "rebuild": 0,
-        "cellar": "/usr/local/Cellar",
-        "prefix": "/usr/local",
-        "root_url": "https://homebrew.bintray.com/bottles",
-        "files": {
-          "arm64_big_sur": {
-            "url": "https://homebrew.bintray.com/bottles/cairo-1.16.0_5.arm64_big_sur.bottle.tar.gz",
-            "sha256": "2fc4da6029167f696fc0b3c0553d36abb8e77c75f0096396d4eb89d0ea912612"
-          },
-          "big_sur": {
-            "url": "https://homebrew.bintray.com/bottles/cairo-1.16.0_5.big_sur.bottle.tar.gz",
-            "sha256": "cb16c1bb070a7cdca7aaf8899a70e407d73636116d62225626b2c8d31aa8d2ff"
-          },
-          "catalina": {
-            "url": "https://homebrew.bintray.com/bottles/cairo-1.16.0_5.catalina.bottle.tar.gz",
-            "sha256": "4a117545953b9784f78db8261c03d71a1ae7af836dcd995abe7e6d710cdfd39c"
-          },
-          "mojave": {
-            "url": "https://homebrew.bintray.com/bottles/cairo-1.16.0_5.mojave.bottle.tar.gz",
-            "sha256": "38c7b7b0f6266632a5f04df12180dc36a1ce218a1c54b13cdca18ad024067311"
+{
+  "formulae": [
+    {
+      "name": "cairo",
+      "full_name": "cairo",
+      "tap": "homebrew/core",
+      "oldname": null,
+      "aliases": [
+
+      ],
+      "versioned_formulae": [
+
+      ],
+      "desc": "Vector graphics library with cross-device output support",
+      "license": "LGPL-2.1-only or MPL-1.1",
+      "homepage": "https://cairographics.org/",
+      "versions": {
+        "stable": "1.16.0",
+        "head": "HEAD",
+        "bottle": true
+      },
+      "urls": {
+        "stable": {
+          "url": "https://cairographics.org/releases/cairo-1.16.0.tar.xz",
+          "tag": null,
+          "revision": null
+        }
+      },
+      "revision": 5,
+      "version_scheme": 0,
+      "bottle": {
+        "stable": {
+          "rebuild": 0,
+          "root_url": "https://ghcr.io/v2/homebrew/core",
+          "files": {
+            "arm64_monterey": {
+              "cellar": "/opt/homebrew/Cellar",
+              "url": "https://ghcr.io/v2/homebrew/core/cairo/blobs/sha256:50feaae83e93330cc0ee6b90477cfa931fab52cdb98ad37a99a0e518da6a580e",
+              "sha256": "50feaae83e93330cc0ee6b90477cfa931fab52cdb98ad37a99a0e518da6a580e"
+            },
+            "arm64_big_sur": {
+              "cellar": "/opt/homebrew/Cellar",
+              "url": "https://ghcr.io/v2/homebrew/core/cairo/blobs/sha256:2fc4da6029167f696fc0b3c0553d36abb8e77c75f0096396d4eb89d0ea912612",
+              "sha256": "2fc4da6029167f696fc0b3c0553d36abb8e77c75f0096396d4eb89d0ea912612"
+            },
+            "monterey": {
+              "cellar": "/usr/local/Cellar",
+              "url": "https://ghcr.io/v2/homebrew/core/cairo/blobs/sha256:ccf4f80f5115aad260e4d3f014dc0aebdd616dfac88f567d211bd8681d60c3a9",
+              "sha256": "ccf4f80f5115aad260e4d3f014dc0aebdd616dfac88f567d211bd8681d60c3a9"
+            },
+            "big_sur": {
+              "cellar": "/usr/local/Cellar",
+              "url": "https://ghcr.io/v2/homebrew/core/cairo/blobs/sha256:cb16c1bb070a7cdca7aaf8899a70e407d73636116d62225626b2c8d31aa8d2ff",
+              "sha256": "cb16c1bb070a7cdca7aaf8899a70e407d73636116d62225626b2c8d31aa8d2ff"
+            },
+            "catalina": {
+              "cellar": "/usr/local/Cellar",
+              "url": "https://ghcr.io/v2/homebrew/core/cairo/blobs/sha256:4a117545953b9784f78db8261c03d71a1ae7af836dcd995abe7e6d710cdfd39c",
+              "sha256": "4a117545953b9784f78db8261c03d71a1ae7af836dcd995abe7e6d710cdfd39c"
+            },
+            "mojave": {
+              "cellar": "/usr/local/Cellar",
+              "url": "https://ghcr.io/v2/homebrew/core/cairo/blobs/sha256:38c7b7b0f6266632a5f04df12180dc36a1ce218a1c54b13cdca18ad024067311",
+              "sha256": "38c7b7b0f6266632a5f04df12180dc36a1ce218a1c54b13cdca18ad024067311"
+            },
+            "x86_64_linux": {
+              "cellar": "/home/linuxbrew/.linuxbrew/Cellar",
+              "url": "https://ghcr.io/v2/homebrew/core/cairo/blobs/sha256:678c795a11134b3455002969fc41b8e2512e97cdaa084f792724ace7549a3407",
+              "sha256": "678c795a11134b3455002969fc41b8e2512e97cdaa084f792724ace7549a3407"
+            }
           }
         }
-      }
-    },
-    "keg_only": false,
-    "bottle_disabled": false,
-    "options": [],
-    "build_dependencies": [
-      "pkg-config"
-    ],
-    "dependencies": [
-      "fontconfig",
-      "freetype",
-      "glib",
-      "libpng",
-      "libx11",
-      "libxcb",
-      "libxext",
-      "libxrender",
-      "lzo",
-      "pixman"
-    ],
-    "recommended_dependencies": [],
-    "optional_dependencies": [],
-    "uses_from_macos": [
-      "zlib"
-    ],
-    "requirements": [],
-    "conflicts_with": [],
-    "caveats": null,
-    "installed": [
-      {
-        "version": "1.16.0_2",
-        "used_options": [],
-        "built_as_bottle": true,
-        "poured_from_bottle": true,
-        "runtime_dependencies": [
-          {
-            "full_name": "libpng",
-            "version": "1.6.37"
-          },
-          {
-            "full_name": "freetype",
-            "version": "2.10.1"
-          },
-          {
-            "full_name": "fontconfig",
-            "version": "2.13.1"
-          },
-          {
-            "full_name": "gettext",
-            "version": "0.20.1"
-          },
-          {
-            "full_name": "libffi",
-            "version": "3.2.1"
-          },
-          {
-            "full_name": "pcre",
-            "version": "8.43"
-          },
-          {
-            "full_name": "gdbm",
-            "version": "1.18.1"
-          },
-          {
-            "full_name": "openssl@1.1",
-            "version": "1.1.1d"
-          },
-          {
-            "full_name": "readline",
-            "version": "8.0.1"
-          },
-          {
-            "full_name": "sqlite",
-            "version": "3.30.1"
-          },
-          {
-            "full_name": "xz",
-            "version": "5.2.4"
-          },
-          {
-            "full_name": "python",
-            "version": "3.7.6"
-          },
-          {
-            "full_name": "glib",
-            "version": "2.62.4"
-          },
-          {
-            "full_name": "lzo",
-            "version": "2.10"
-          },
-          {
-            "full_name": "pixman",
-            "version": "0.38.4"
-          }
-        ],
-        "installed_as_dependency": true,
-        "installed_on_request": false
-      }
-    ],
-    "linked_keg": "1.16.0_2",
-    "pinned": false,
-    "outdated": true,
-    "deprecated": false,
-    "deprecation_date": null,
-    "deprecation_reason": null,
-    "disabled": false,
-    "disable_date": null,
-    "disable_reason": null
-  }
-]
+      },
+      "keg_only": false,
+      "bottle_disabled": false,
+      "options": [
+
+      ],
+      "build_dependencies": [
+        "pkg-config"
+      ],
+      "dependencies": [
+        "fontconfig",
+        "freetype",
+        "glib",
+        "libpng",
+        "libx11",
+        "libxcb",
+        "libxext",
+        "libxrender",
+        "lzo",
+        "pixman"
+      ],
+      "recommended_dependencies": [
+
+      ],
+      "optional_dependencies": [
+
+      ],
+      "uses_from_macos": [
+        "zlib"
+      ],
+      "requirements": [
+
+      ],
+      "conflicts_with": [
+
+      ],
+      "caveats": null,
+      "installed": [
+        {
+          "version": "1.16.0_5",
+          "used_options": [
+
+          ],
+          "built_as_bottle": true,
+          "poured_from_bottle": true,
+          "runtime_dependencies": [
+            {
+              "full_name": "libpng",
+              "version": "1.6.37",
+              "declared_directly": true
+            },
+            {
+              "full_name": "freetype",
+              "version": "2.11.0",
+              "declared_directly": true
+            },
+            {
+              "full_name": "fontconfig",
+              "version": "2.13.1",
+              "declared_directly": true
+            },
+            {
+              "full_name": "gettext",
+              "version": "0.21",
+              "declared_directly": false
+            },
+            {
+              "full_name": "libffi",
+              "version": "3.4.2",
+              "declared_directly": false
+            },
+            {
+              "full_name": "pcre",
+              "version": "8.45",
+              "declared_directly": false
+            },
+            {
+              "full_name": "gdbm",
+              "version": "1.21",
+              "declared_directly": false
+            },
+            {
+              "full_name": "mpdecimal",
+              "version": "2.5.1",
+              "declared_directly": false
+            },
+            {
+              "full_name": "ca-certificates",
+              "version": "2021-10-26",
+              "declared_directly": false
+            },
+            {
+              "full_name": "openssl@1.1",
+              "version": "1.1.1l",
+              "declared_directly": false
+            },
+            {
+              "full_name": "readline",
+              "version": "8.1.1",
+              "declared_directly": false
+            },
+            {
+              "full_name": "sqlite",
+              "version": "3.36.0",
+              "declared_directly": false
+            },
+            {
+              "full_name": "xz",
+              "version": "5.2.5",
+              "declared_directly": false
+            },
+            {
+              "full_name": "python@3.9",
+              "version": "3.9.7",
+              "declared_directly": false
+            },
+            {
+              "full_name": "glib",
+              "version": "2.70.0",
+              "declared_directly": true
+            },
+            {
+              "full_name": "pkg-config",
+              "version": "0.29.2",
+              "declared_directly": false
+            },
+            {
+              "full_name": "libpthread-stubs",
+              "version": "0.4",
+              "declared_directly": false
+            },
+            {
+              "full_name": "xorgproto",
+              "version": "2021.5",
+              "declared_directly": false
+            },
+            {
+              "full_name": "libxau",
+              "version": "1.0.9",
+              "declared_directly": false
+            },
+            {
+              "full_name": "libxdmcp",
+              "version": "1.1.3",
+              "declared_directly": false
+            },
+            {
+              "full_name": "libxcb",
+              "version": "1.14",
+              "declared_directly": true
+            },
+            {
+              "full_name": "libx11",
+              "version": "1.7.2",
+              "declared_directly": true
+            },
+            {
+              "full_name": "libxext",
+              "version": "1.3.4",
+              "declared_directly": true
+            },
+            {
+              "full_name": "libxrender",
+              "version": "0.9.10",
+              "declared_directly": true
+            },
+            {
+              "full_name": "lzo",
+              "version": "2.10",
+              "declared_directly": true
+            },
+            {
+              "full_name": "pixman",
+              "version": "0.40.0",
+              "declared_directly": true
+            }
+          ],
+          "installed_as_dependency": true,
+          "installed_on_request": false
+        }
+      ],
+      "linked_keg": "1.16.0_5",
+      "pinned": false,
+      "outdated": false,
+      "deprecated": false,
+      "deprecation_date": null,
+      "deprecation_reason": null,
+      "disabled": false,
+      "disable_date": null,
+      "disable_reason": null
+    }
+  ],
+  "casks": [
+
+  ]
+}
