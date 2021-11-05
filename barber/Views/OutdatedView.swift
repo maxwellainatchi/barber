@@ -8,6 +8,16 @@
 
 import SwiftUI
 
+extension View {
+    @ViewBuilder func hidden(if condition: Bool) -> some View {
+        if condition {
+            self.hidden()
+        } else {
+            self
+        }
+    }
+}
+
 extension CGFloat {
     static let defaultCornerRadius: CGFloat = 3.0
 }
@@ -25,6 +35,7 @@ struct OutdatedView: View {
     var entry: Homebrew.OutdatedEntry
 
     @State var collapsed = true
+    @State var animationValue = 0
     @ObservedObject var infoState: LoadState<Homebrew.InfoResponse>
     @ObservedObject var updateState: LoadState<Void>
 
@@ -37,7 +48,7 @@ struct OutdatedView: View {
     var body: some View {
         VStack {
             HStack {
-                Text(collapsed ? "▶︎" : "▼")
+                Image(systemName: "chevron.\(collapsed ? "up" : "down")")
                 if entry.pinned {
                     Text("📌")
                 }
@@ -47,13 +58,19 @@ struct OutdatedView: View {
                 ActionButton(text: "Update", state: self.updateState, successView: { Text("✅") })
             }.onTapGesture {
                 collapsed.toggle()
-            }
-            if !self.collapsed {
-                Divider()
-                InfoView(state: self.infoState).onAppear {
-                    self.infoState.reload()
+                if !collapsed {
+                    animationValue += 1
                 }
             }
+            VStack {
+                if !collapsed {
+                    Divider()
+                    InfoView(state: self.infoState).onAppear {
+                        self.infoState.reload()
+                    }
+                }
+            }
+            .clipped().animation(.easeOut, value: collapsed).transition(.slide)
         }
         .cornerRadius(.defaultCornerRadius)
     }

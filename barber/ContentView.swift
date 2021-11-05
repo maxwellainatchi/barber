@@ -102,9 +102,7 @@ struct ContentView: View {
             }.padding(.horizontal)
         }
         .padding(.vertical)
-        .frame(width: size.width, height: size.height)
-        #if DEBUG
-            .preferredColorScheme(self.colorScheme)
-        #endif
+        .preferredColorScheme(self.colorScheme)
+        .frame(minWidth: self.size.width, maxWidth: self.size.width, maxHeight: self.size.height, alignment: .top)
     }
 }
