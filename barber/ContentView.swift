@@ -74,9 +74,13 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 10) {
             Text("Homebrew").font(.largeTitle).padding(.horizontal)
-            Spacer()
+            if case let .loaded(outdated) = self.state.status {
+                Text("\(outdated.formulae.count) outdated formulae").font(.subheadline)
+            } else {
+                Spacer()
+            }
             LoadModelView(state: self.state) { outdated in
-                HStack {
+                VStack {
                     if !outdated.formulae.isEmpty {
                         List(outdated.formulae) { entry in
                             OutdatedView(entry: entry)
@@ -86,7 +90,9 @@ struct ContentView: View {
                     }
                 }
             }
-            Spacer()
+            if case .loaded = self.state.status {} else {
+                Spacer()
+            }
             Divider()
             HStack {
                 Button.from(systemImageName: "xmark.circle", action: { exit(0) }).help("Quit")
