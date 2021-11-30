@@ -11,41 +11,41 @@ import SwiftUI
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    var popover: NSPopover!
-    var statusBarItem: NSStatusItem!
+    let size = NSSize(width: 400, height: 400)
+    lazy var popover: NSPopover = {
+        let popover = NSPopover()
+        popover.contentSize = size
+        popover.behavior = .transient
+        return popover
+    }()
+
+    lazy var statusBarItem: NSStatusItem = {
+        let statusBarItem = NSStatusBar.system.statusItem(withLength: CGFloat(NSStatusItem.variableLength))
+        statusBarItem.button?.image = NSImage(named: "icon")
+        return statusBarItem
+    }()
 
     var state = BackgroundScheduledLoadState(interval: 10 ... 20, load: Homebrew.shared.outdated)
 
     func applicationDidFinishLaunching(_: Notification) {
-        let size = NSSize(width: 400, height: 400)
-        let contentView = ContentView(state: self.state, size: size)
+        let contentView = ContentView(state: self.state, size: self.size)
+        self.popover.contentViewController = NSHostingController(rootView: contentView)
+
+        self.statusBarItem.button?.action = #selector(self.togglePopover(_:))
+
         self.state.reload()
-
         self.state.schedule()
-
-        let popover = NSPopover()
-        popover.contentSize = size
-        popover.behavior = .transient
-        popover.contentViewController = NSHostingController(rootView: contentView)
-        self.popover = popover
-
-        self.statusBarItem = NSStatusBar.system.statusItem(withLength: CGFloat(NSStatusItem.variableLength))
-        if let button = self.statusBarItem.button {
-            button.image = NSImage(named: "icon")
-            button.action = #selector(self.togglePopover(_:))
-        }
     }
 
     @objc func togglePopover(_ sender: AnyObject?) {
-        if let button = self.statusBarItem.button {
-            if self.popover.isShown {
-                self.popover.performClose(sender)
-            } else {
-                self.popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
-                NSApp.activate(ignoringOtherApps: true)
-                self.popover.contentViewController?.view.window?.becomeKey()
-                self.state.refreshIfNeeded()
-            }
+        guard let button = self.statusBarItem.button else { return }
+        if self.popover.isShown {
+            self.popover.performClose(sender)
+        } else {
+            self.popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+            NSApp.activate(ignoringOtherApps: true)
+            self.popover.contentViewController?.view.window?.becomeKey()
+            self.state.refreshIfNeeded()
         }
     }
 }
