@@ -22,6 +22,7 @@
 		50FE66DD2651863A003B0B90 /* OutdatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FE66DC2651863A003B0B90 /* OutdatedView.swift */; };
 		C3136488273190070040DADF /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = C3136487273190070040DADF /* Introspect */; };
 		C313648A2731905F0040DADF /* ListModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31364892731905F0040DADF /* ListModifiers.swift */; };
+		C3A79827275682B600156CD9 /* LoadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A79826275682B600156CD9 /* LoadState.swift */; };
 		C3D929182732C1BE0099C570 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D929172732C1BE0099C570 /* Config.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		50FE66D926517FD4003B0B90 /* Homebrew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Homebrew.swift; sourceTree = "<group>"; };
 		50FE66DC2651863A003B0B90 /* OutdatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutdatedView.swift; sourceTree = "<group>"; };
 		C31364892731905F0040DADF /* ListModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModifiers.swift; sourceTree = "<group>"; };
+		C3A79826275682B600156CD9 /* LoadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadState.swift; sourceTree = "<group>"; };
 		C3D929172732C1BE0099C570 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 		5095B4D924C392E700A4483C /* barber */ = {
 			isa = PBXGroup;
 			children = (
+				C3A798242756829C00156CD9 /* Models */,
 				C313648B273190640040DADF /* Modifiers */,
 				C3136485273184A20040DADF /* Services */,
 				5033B3082651C875002810FD /* Views */,
@@ -135,6 +138,22 @@
 				C31364892731905F0040DADF /* ListModifiers.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		C3A798242756829C00156CD9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C3A79825275682A900156CD9 /* Utils */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C3A79825275682A900156CD9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C3A79826275682B600156CD9 /* LoadState.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		C3D929192732C1CD0099C570 /* Utilities */ = {
@@ -228,6 +247,7 @@
 				5095B4DD24C392E700A4483C /* ContentView.swift in Sources */,
 				5095B4DB24C392E700A4483C /* AppDelegate.swift in Sources */,
 				50DB8A4726573D17007456FD /* LoadModelView.swift in Sources */,
+				C3A79827275682B600156CD9 /* LoadState.swift in Sources */,
 				50FE66DD2651863A003B0B90 /* OutdatedView.swift in Sources */,
 				50FE66DA26517FD4003B0B90 /* Homebrew.swift in Sources */,
 				5095B4E024C392E700A4483C /* barber.xcdatamodeld in Sources */,
