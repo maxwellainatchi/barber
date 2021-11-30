@@ -23,6 +23,7 @@
 		C3136488273190070040DADF /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = C3136487273190070040DADF /* Introspect */; };
 		C313648A2731905F0040DADF /* ListModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31364892731905F0040DADF /* ListModifiers.swift */; };
 		C3A79827275682B600156CD9 /* LoadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A79826275682B600156CD9 /* LoadState.swift */; };
+		C3A798292756833E00156CD9 /* BackgroundScheduledLoadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A798282756833E00156CD9 /* BackgroundScheduledLoadState.swift */; };
 		C3D929182732C1BE0099C570 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D929172732C1BE0099C570 /* Config.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		50FE66DC2651863A003B0B90 /* OutdatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutdatedView.swift; sourceTree = "<group>"; };
 		C31364892731905F0040DADF /* ListModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModifiers.swift; sourceTree = "<group>"; };
 		C3A79826275682B600156CD9 /* LoadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadState.swift; sourceTree = "<group>"; };
+		C3A798282756833E00156CD9 /* BackgroundScheduledLoadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundScheduledLoadState.swift; sourceTree = "<group>"; };
 		C3D929172732C1BE0099C570 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				C3A79826275682B600156CD9 /* LoadState.swift */,
+				C3A798282756833E00156CD9 /* BackgroundScheduledLoadState.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				50FE66DD2651863A003B0B90 /* OutdatedView.swift in Sources */,
 				50FE66DA26517FD4003B0B90 /* Homebrew.swift in Sources */,
 				5095B4E024C392E700A4483C /* barber.xcdatamodeld in Sources */,
+				C3A798292756833E00156CD9 /* BackgroundScheduledLoadState.swift in Sources */,
 				C313648A2731905F0040DADF /* ListModifiers.swift in Sources */,
 				C3D929182732C1BE0099C570 /* Config.swift in Sources */,
 				50DB8A4B265755AC007456FD /* InfoView.swift in Sources */,

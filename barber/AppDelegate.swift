@@ -14,12 +14,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var popover: NSPopover!
     var statusBarItem: NSStatusItem!
 
-    var state = LoadState(load: Homebrew.shared.outdated)
+    var state = BackgroundScheduledLoadState(interval: 10 ... 20, load: Homebrew.shared.outdated)
 
     func applicationDidFinishLaunching(_: Notification) {
         let size = NSSize(width: 400, height: 400)
         let contentView = ContentView(state: self.state, size: size)
         self.state.reload()
+
+        self.state.schedule()
 
         let popover = NSPopover()
         popover.contentSize = size
@@ -42,6 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
                 NSApp.activate(ignoringOtherApps: true)
                 self.popover.contentViewController?.view.window?.becomeKey()
+                self.state.refreshIfNeeded()
             }
         }
     }
